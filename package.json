@@ -1,12 +1,7 @@
 {
-  "name": "wfirmaapi",
+  "name": "wfirmaAPIWrapper",
   "version": "0.0.1",
   "description": "node.JS wFirma API wrapper ",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hydraosu/wFirmaAPIWrapper.git"
