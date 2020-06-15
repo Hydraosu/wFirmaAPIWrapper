@@ -7,13 +7,13 @@ Wrapper for wFirma API.
 Use the package manager [npm](https://www.npmjs.com) to install.
 
 ```bash
-npm install wfirmaApiWrapper
+npm install wfirma-api-wrapper
 ```
 
 ## Usage
 
 ```javascript
-const wfirma = require('wfirmaAPIWrapper');
+const wfirma = require('wfirma-api-wrapper');
 
 let username = 'example@mail.com',
     password = 'YOUR-PASSWORD',
