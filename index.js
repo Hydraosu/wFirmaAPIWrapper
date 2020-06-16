@@ -15,11 +15,48 @@ module.exports = class wfirma {
         this.outputFormat = outputFormat;
     }
 
-    find = action =>
-        axios.get(`https://api2.wfirma.pl/${action}/find?companyId=${this.companyId}&inputFormat=${this.inputFormat}&outputFormat=${this.outputFormat}`, this.authorization);
+    clone = (obj) => Object.assign({}, obj);
 
-    get = (action, id) =>
-        axios.get(`https://api2.wfirma.pl/${action}/get/${id}?companyId=${this.companyId}&inputFormat=${this.inputFormat}&outputFormat=${this.outputFormat}`, this.authorization);
+    renameKey = (object, key, newKey) => {
 
+        const clonedObj = this.clone(object),
+            targetKey = clonedObj[key];
+
+        delete clonedObj[key];
+
+        clonedObj[newKey] = targetKey;
+
+        return clonedObj;
+
+    };
+
+    find = (action, pageValue, limitValue) => {
+        this.body = this.renameKey(this.body, 'invoices', action);
+
+        if (pageValue && limitValue) {
+            this.body[action] = {
+                parameters: {
+                    page: pageValue,
+                    limit: limitValue
+                }
+            }
+        }
+
+        let request =
+            axios.post(`https://api2.wfirma.pl/${action}/find?companyId=${this.companyId}&inputFormat=${this.inputFormat}&outputFormat=${this.outputFormat}`, this.body, this.authorization);
+
+        return request;
+    }
+
+    get = (action, id) => {
+        let request =
+            axios.get(`https://api2.wfirma.pl/${action}/get/${id}?companyId=${this.companyId}&inputFormat=${this.inputFormat}&outputFormat=${this.outputFormat}`, this.authorization);
+
+        return request;
+    }
+
+    body = {
+        invoices: {}
+    }
 }
 
