@@ -12,7 +12,7 @@ Full wFirma documentation [here](https://doc.wfirma.pl).
 
 ## Methods
 * .find(action, page, limit)
-* .get(action)
+* .get(action, id)
 
 ## Usage
 
