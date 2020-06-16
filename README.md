@@ -5,10 +5,14 @@ Wrapper for wFirma API.
 ## Installation
 
 Use the package manager [npm](https://www.npmjs.com) to install.
-
 ```bash
 npm install wfirma-api-wrapper
 ```
+Full wFirma documentation [here](https://doc.wfirma.pl).
+
+## Methods
+* .find(action, page, limit)
+* .get(action)
 
 ## Usage
 

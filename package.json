@@ -1,6 +1,6 @@
 {
   "name": "wfirma-api-wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "node.JS wFirma API wrapper ",
   "repository": {
     "type": "git",
