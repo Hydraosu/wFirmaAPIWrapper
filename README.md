@@ -27,7 +27,9 @@ let username = 'example@mail.com',
 
 const wfirmaApi = new wfirma(username, password, companyId, inputFormat, outputFormat);
 
-wfirmaApi.find('invoices')
+wfirmaApi.fields = ['Invoice.Id', 'Invoice.type', 'Invoice.fullnumber', 'Invoice.date'];
+
+wfirmaApi.find('invoices', '1', '10')
     .then(response => {
         console.log(response);
     })

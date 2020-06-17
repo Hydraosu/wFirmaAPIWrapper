@@ -18,7 +18,6 @@ module.exports = class wfirma {
     clone = (obj) => Object.assign({}, obj);
 
     renameKey = (object, key, newKey) => {
-
         const clonedObj = this.clone(object),
             targetKey = clonedObj[key];
 
@@ -30,16 +29,26 @@ module.exports = class wfirma {
 
     };
 
+    fields = [];
+
     find = (action, pageValue, limitValue) => {
         this.body = this.renameKey(this.body, 'invoices', action);
 
         if (pageValue && limitValue) {
-            this.body[action] = {
-                parameters: {
-                    page: pageValue,
-                    limit: limitValue
-                }
+            this.body[action]['parameters'] = {
+                page: pageValue,
+                limit: limitValue
             }
+        }
+
+        if (this.fields) {
+            let temp = [];
+
+            this.fields.forEach(field => {
+                temp.push({field: field});
+
+                this.body[action]['parameters']['fields'] = temp;
+            })
         }
 
         let request =
@@ -56,7 +65,10 @@ module.exports = class wfirma {
     }
 
     body = {
-        invoices: {}
+        invoices: {
+            parameters: {
+            }
+        }
     }
 }
 
